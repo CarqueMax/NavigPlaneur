@@ -10,8 +10,8 @@ public class RadiusGlider {
      * @param glide the glide ratio of the glider
      */
     public RadiusGlider (int altitude, int glide) {
-        altitude = this.altitude;
-        glide = this.glide;
+        this.altitude = altitude;
+        this.glide = glide;
     }
 
     /**
@@ -35,7 +35,7 @@ public class RadiusGlider {
      * @param altitude the altitude of the glider
      */
     public void SetAltitude(int altitude) {
-        altitude = this.altitude;
+        this.altitude = altitude;
     }
 
     /**
@@ -43,7 +43,7 @@ public class RadiusGlider {
      * @param glide the glide ratio of the glider
      */
     public void SetGlide(int glide) {
-        glide = this.glide;
+        this.glide = glide;
     }
 
     /**
