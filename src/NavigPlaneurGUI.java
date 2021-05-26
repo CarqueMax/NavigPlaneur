@@ -5,14 +5,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.*;
 
 
 public class NavigPlaneurGUI extends JFrame {
-	
 	// Home components
 	private JLabel title;
 	private JButton settings;
@@ -22,8 +18,10 @@ public class NavigPlaneurGUI extends JFrame {
 	private JRadioButton choice2;
 	private JLabel altitude;
 	private JTextField altitudeTextField;
+	private JButton getAltitude;
 	private JButton darkTheme;
 	private boolean dark;
+	public RadiusGlider radius;
 	
 	/**
 	 * Launch the application
@@ -41,6 +39,7 @@ public class NavigPlaneurGUI extends JFrame {
 	 * Constructor of the NavigPlaneurGui
 	 */
 	public NavigPlaneurGUI() {
+		radius = new RadiusGlider(0,0);
 		this.initComponents();
 	}
 	
@@ -53,6 +52,7 @@ public class NavigPlaneurGUI extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setVisible(true);
 		dark = false;
 		
 		// Add the map image
@@ -85,28 +85,30 @@ public class NavigPlaneurGUI extends JFrame {
 		navigation = new JLabel("<html><body><u>Navigation</u></body></html>",JLabel.CENTER);	
 		choice1 = new JRadioButton();
 		choice2 = new JRadioButton();
-		altitude = new JLabel("Altitude actuelle");
-		altitudeTextField = new JTextField("Entrer altitude");
-		darkTheme = new JButton("Thème sombre");
+		altitude = new JLabel("Rentrer altitude :");
+		altitudeTextField = new JTextField();
+		getAltitude = new JButton("Valider");
+		darkTheme = new JButton("ThÃ¨me sombre");
 		navigation.setFont(f2);
 		altitude.setFont(f2);
-		altitudeTextField.setFont(f2);
+		getAltitude.setFont(f2);
 		darkTheme.setFont(f2);
 		navigation.setForeground(Color.BLACK);
 		altitude.setForeground(Color.BLACK);
 		choice1.setForeground(Color.BLACK);
 		choice2.setForeground(Color.BLACK);
-		altitudeTextField.setForeground(Color.BLACK);
+		getAltitude.setForeground(Color.BLACK);
 		darkTheme.setForeground(Color.BLACK);
 		choice1.setHorizontalAlignment(JLabel.CENTER);
 		choice2.setHorizontalAlignment(JLabel.CENTER);
 		altitude.setHorizontalAlignment(JLabel.CENTER);
-		altitudeTextField.setHorizontalAlignment(JLabel.CENTER);
+		getAltitude.setHorizontalAlignment(JLabel.CENTER);
 		darkTheme.setHorizontalAlignment(JLabel.CENTER);
 		menu.setBackground(Color.WHITE);
 		choice1.setBackground(Color.WHITE);
 		choice2.setBackground(Color.WHITE);
 		altitudeTextField.setBackground(Color.WHITE);
+		getAltitude.setBackground(Color.WHITE);
 		darkTheme.setBackground(Color.WHITE);
 		getContentPane().setBackground(Color.WHITE);
 		
@@ -131,6 +133,7 @@ public class NavigPlaneurGUI extends JFrame {
 		menu.add(choice2Layout);
 		menu.add(altitude);
 		menu.add(altitudeTextField);
+		menu.add(getAltitude);
 		menu.add(darkTheme);
 		add(menu, BorderLayout.WEST);
 
@@ -148,6 +151,12 @@ public class NavigPlaneurGUI extends JFrame {
 			}
 		});
 		
+		getAltitude.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent evt) {
+				getAltitude(evt);
+			}
+		});
+		
 		// Place the components on the panel
 		main.add(stateBar, BorderLayout.NORTH);
 		main.setAlignmentX(CENTER_ALIGNMENT);
@@ -161,7 +170,8 @@ public class NavigPlaneurGUI extends JFrame {
 	 */
 	private void settings(ActionEvent evt) {
 		this.dispose();
-		Settings s = new Settings();
+		//Settings s = new Settings();
+		Settings fen = new Settings();
 	}
 
 	/**
@@ -174,6 +184,7 @@ public class NavigPlaneurGUI extends JFrame {
 			choice1.setBackground(Color.DARK_GRAY);
 			choice2.setBackground(Color.DARK_GRAY);
 			altitudeTextField.setBackground(Color.DARK_GRAY);
+			getAltitude.setBackground(Color.DARK_GRAY);
 			darkTheme.setBackground(Color.DARK_GRAY);
 			getContentPane().setBackground(Color.DARK_GRAY);
 			dark = true;
@@ -183,9 +194,28 @@ public class NavigPlaneurGUI extends JFrame {
 			choice1.setBackground(Color.WHITE);
 			choice2.setBackground(Color.WHITE);
 			altitudeTextField.setBackground(Color.WHITE);
+			getAltitude.setBackground(Color.WHITE);
 			darkTheme.setBackground(Color.WHITE);
 			getContentPane().setBackground(Color.WHITE);
 			dark = false;
+		}
+	}
+	
+	/**
+	 * Get altitude
+	 * @param evt
+	 */
+	private void getAltitude(ActionEvent evt) {
+		try {
+			if(0<=Integer.parseInt(altitudeTextField.getText()) && Integer.parseInt(altitudeTextField.getText()) < 10000) {
+				System.out.println("Altitude :"+altitudeTextField.getText());
+				
+				radius.setAltitude(Integer.parseInt(altitudeTextField.getText()));
+			}else {
+				System.out.println("Veuillez rentrer une valeur comprise entre 0 et 10000");
+			}
+		}catch(NumberFormatException e) {
+			System.out.println("Veuillez rentrer une valeur !");
 		}
 	}
 }
