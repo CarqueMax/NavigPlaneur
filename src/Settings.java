@@ -4,8 +4,8 @@ import java.awt.event.*;
 
 public class Settings extends JFrame {
     private JLabel title;
-	private JButton welcomMenu;
-	private JPanel menu;
+    private JButton welcomMenu;
+    private JPanel menu;
     private JPanel altitude;
     private JPanel vitesse;
     private JPanel finesse;
@@ -34,9 +34,9 @@ public class Settings extends JFrame {
 	 * Initialize the components
 	 */
 	private void initComponents() {
-        setTitle("NavigPlaneur");
+        	setTitle("NavigPlaneur");
 		setSize(915,600);
-        setVisible(true);
+        	setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -57,7 +57,7 @@ public class Settings extends JFrame {
 		welcomMenu.setBackground(Color.WHITE);
 		welcomMenu.setForeground(Color.BLACK);
 
-        JPanel stateBar = new JPanel();
+        	JPanel stateBar = new JPanel();
 		add(title, BorderLayout.NORTH);
 		add(welcomMenu);
 
