@@ -20,7 +20,7 @@ public class NavigPlaneurGUI extends JFrame {
 	private JTextField altitudeTextField;
 	private JButton getAltitude;
 	private JButton darkTheme;
-	private boolean dark;
+	public boolean dark;
 	public RadiusGlider radius;
 	
 	/**
@@ -29,7 +29,7 @@ public class NavigPlaneurGUI extends JFrame {
 	public static void main(String args[]) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				NavigPlaneurGUI frame = new NavigPlaneurGUI();
+				NavigPlaneurGUI frame = new NavigPlaneurGUI(false);
 				frame.setVisible(true);
 			}
 		});
@@ -38,9 +38,10 @@ public class NavigPlaneurGUI extends JFrame {
 	/**
 	 * Constructor of the NavigPlaneurGui
 	 */
-	public NavigPlaneurGUI() {
+	public NavigPlaneurGUI(boolean dark) {
 		radius = new RadiusGlider(0,0);
 		this.initComponents();
+		this.dark = dark;
 	}
 	
 	/**
@@ -52,7 +53,6 @@ public class NavigPlaneurGUI extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setVisible(true);
 		dark = false;
 		
 		// Add the map image
@@ -171,7 +171,7 @@ public class NavigPlaneurGUI extends JFrame {
 	private void settings(ActionEvent evt) {
 		this.dispose();
 		//Settings s = new Settings();
-		Settings fen = new Settings();
+		Settings fen = new Settings(this.dark);
 	}
 
 	/**

@@ -4,12 +4,20 @@ import java.awt.event.*;
 
 public class Settings extends JFrame {
     private JLabel title;
-	private JButton welcomMenu;
-	private JPanel menu;
+    private JButton welcomMenu;
+    private JPanel menu;
     private JPanel altitude;
     private JPanel vitesse;
     private JPanel finesse;
     private JTextField saisieFin;
+    private NavigPlaneurGUI navig;
+    private JButton validerFin;
+    private JPanel choicesAlt;
+    private JPanel choicesVit;
+    private JRadioButton choice1Alt;
+    private JRadioButton choice2Alt;
+    private JRadioButton choice1Vit;
+    private JRadioButton choice2Vit;
 	
     /**
 	 * Settings menu
@@ -17,7 +25,7 @@ public class Settings extends JFrame {
 	public static void main(String args[]) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				Settings frame = new Settings();
+				Settings frame = new Settings(navig.dark);
 				frame.setVisible(true);
 			}
 		});
@@ -26,8 +34,10 @@ public class Settings extends JFrame {
 	/**
 	 * Constructor of the NavigPlaneurGui
 	 */
-	public Settings() {
+	public Settings(boolean dark) {
+        navig = new NavigPlaneurGUI(dark);
 		this.initComponents();
+        darkTheme();
 	}
 
     /**
@@ -49,7 +59,7 @@ public class Settings extends JFrame {
 		title.setHorizontalAlignment(JLabel.CENTER);
 
         // Add the parameters button at top left
-		welcomMenu = new JButton("Settings");
+		welcomMenu = new JButton("Home");
 		welcomMenu.setSize(134, 34);
 		Font f2 = new Font("Sherif",Font.PLAIN, 15);
 		welcomMenu.setFont(f2);
@@ -63,37 +73,42 @@ public class Settings extends JFrame {
 
         // altitude
         JLabel alt = new JLabel("Unité d'altitude");
+        alt.setForeground(Color.BLACK);
         altitude = new JPanel(new GridLayout(2,1));
         altitude.add(alt);
-        JPanel choicesAlt = new JPanel(new GridLayout(1,4));
-        JRadioButton choice1Alt = new JRadioButton();
-        JRadioButton choice2Alt = new JRadioButton();
+        choicesAlt = new JPanel(new GridLayout(1,4));
+        choice1Alt = new JRadioButton();
+        choice2Alt = new JRadioButton();
         choicesAlt.add(choice1Alt);
-        choicesAlt.add(new JLabel("m"));
+        choicesAlt.add(new JLabel("m"),Color.BLACK);
         choicesAlt.add(choice2Alt);
-        choicesAlt.add(new JLabel("ft"));
+        choicesAlt.add(new JLabel("ft"),Color.BLACK);
         altitude.add(choicesAlt);
 
         // vitesse
         JLabel vit = new JLabel("Unité de vitesse");
+        vit.setForeground(Color.BLACK);
         vitesse = new JPanel(new GridLayout(2,1));
         vitesse.add(vit);
-        JPanel choicesVit = new JPanel(new GridLayout(1,4));
-        JRadioButton choice1Vit = new JRadioButton();
-        JRadioButton choice2Vit = new JRadioButton();
+        choicesVit = new JPanel(new GridLayout(1,4));
+        choice1Vit = new JRadioButton();
+        choice2Vit = new JRadioButton();
         choicesVit.add(choice1Vit);
-        choicesVit.add(new JLabel("km/h"));
+        choicesVit.add(new JLabel("km/h"),Color.BLACK);
         choicesVit.add(choice2Vit);
-        choicesVit.add(new JLabel("kn"));
+        choicesVit.add(new JLabel("kn"),Color.BLACK);
         vitesse.add(choicesVit);
 
         // finesse
         JLabel fin = new JLabel("Unité de finesse");
+        fin.setForeground(Color.BLACK);
         finesse = new JPanel(new GridLayout(2,1));
         finesse.add(fin);
         JPanel menuFin = new JPanel(new GridLayout(1,2));
         saisieFin = new JTextField();
-        JButton validerFin = new JButton("Valider");
+        validerFin = new JButton("Valider");
+        validerFin.setForeground(Color.BLACK);
+        
         menuFin.add(saisieFin);
         menuFin.add(validerFin);
         finesse.add(menuFin);
@@ -131,7 +146,8 @@ public class Settings extends JFrame {
 	 */
 	private void welcomMenu(ActionEvent evt) {
 		this.dispose();
-		NavigPlaneurGUI s = new NavigPlaneurGUI();
+		NavigPlaneurGUI s = new NavigPlaneurGUI(navig.dark);
+        s.setVisible(true);
 	}
 
     /**
@@ -142,13 +158,35 @@ public class Settings extends JFrame {
         try {
             if(Integer.parseInt(saisieFin.getText()) > 0 && Integer.parseInt(saisieFin.getText()) < 100) {
                 System.out.println("Finesse :"+saisieFin.getText());
-                NavigPlaneurGUI navig = new NavigPlaneurGUI();
                 navig.radius.setGlide(Integer.parseInt(saisieFin.getText()));
             }else {
                 System.out.println("Veuillez rentrer une valeur comprise entre 1 et 100");
             }
         }catch(NumberFormatException e) {
             System.out.println("Veuillez rentrer une valeur !");
+        }
+    }
+
+    private void darkTheme() {
+        if(navig.dark){
+            getContentPane().setBackground(Color.DARK_GRAY);
+            title.setBackground(Color.DARK_GRAY);
+            welcomMenu.setBackground(Color.DARK_GRAY);
+            menu.setBackground(Color.DARK_GRAY);
+            altitude.setBackground(Color.DARK_GRAY);
+            vitesse.setBackground(Color.DARK_GRAY);
+            finesse.setBackground(Color.DARK_GRAY);
+            saisieFin.setBackground(Color.DARK_GRAY);
+            navig.setBackground(Color.DARK_GRAY);
+            validerFin.setBackground(Color.DARK_GRAY);
+            choicesAlt.setBackground(Color.DARK_GRAY);
+            choicesVit.setBackground(Color.DARK_GRAY);
+
+            choice1Alt.setBackground(Color.DARK_GRAY);
+            choice2Alt.setBackground(Color.DARK_GRAY);
+            choice1Vit.setBackground(Color.DARK_GRAY);
+            choice2Vit.setBackground(Color.DARK_GRAY);
+
         }
     }
 }
