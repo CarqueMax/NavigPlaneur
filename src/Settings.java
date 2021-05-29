@@ -25,7 +25,7 @@ public class Settings extends JFrame {
 	public static void main(String args[]) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				Settings frame = new Settings(navig.dark);
+				Settings frame = new Settings(false);
 				frame.setVisible(true);
 			}
 		});
@@ -59,7 +59,7 @@ public class Settings extends JFrame {
 		title.setHorizontalAlignment(JLabel.CENTER);
 
         // Add the parameters button at top left
-		welcomMenu = new JButton("Home");
+		welcomMenu = new JButton("Accueil");
 		welcomMenu.setSize(134, 34);
 		Font f2 = new Font("Sherif",Font.PLAIN, 15);
 		welcomMenu.setFont(f2);
@@ -72,7 +72,7 @@ public class Settings extends JFrame {
 		add(welcomMenu);
 
         // altitude
-        JLabel alt = new JLabel("UnitÃ© d'altitude");
+        JLabel alt = new JLabel("Unité d'altitude");
         alt.setForeground(Color.BLACK);
         altitude = new JPanel(new GridLayout(2,1));
         altitude.add(alt);
@@ -80,13 +80,17 @@ public class Settings extends JFrame {
         choice1Alt = new JRadioButton();
         choice2Alt = new JRadioButton();
         choicesAlt.add(choice1Alt);
-        choicesAlt.add(new JLabel("m"),Color.BLACK);
+        JLabel m = new JLabel("m");
+        m.setForeground(Color.BLACK);
+        choicesAlt.add(m);
         choicesAlt.add(choice2Alt);
-        choicesAlt.add(new JLabel("ft"),Color.BLACK);
+        JLabel ft = new JLabel("ft");
+        ft.setForeground(Color.BLACK);
+        choicesAlt.add(ft);
         altitude.add(choicesAlt);
 
         // vitesse
-        JLabel vit = new JLabel("UnitÃ© de vitesse");
+        JLabel vit = new JLabel("Unité de vitesse");
         vit.setForeground(Color.BLACK);
         vitesse = new JPanel(new GridLayout(2,1));
         vitesse.add(vit);
@@ -94,18 +98,23 @@ public class Settings extends JFrame {
         choice1Vit = new JRadioButton();
         choice2Vit = new JRadioButton();
         choicesVit.add(choice1Vit);
-        choicesVit.add(new JLabel("km/h"),Color.BLACK);
+        JLabel km = new JLabel("km/h");
+        km.setForeground(Color.BLACK);
+        choicesVit.add(km);
         choicesVit.add(choice2Vit);
-        choicesVit.add(new JLabel("kn"),Color.BLACK);
+        JLabel kn = new JLabel("kn");
+        kn.setForeground(Color.BLACK);
+        choicesVit.add(kn);
         vitesse.add(choicesVit);
 
         // finesse
-        JLabel fin = new JLabel("UnitÃ© de finesse");
+        JLabel fin = new JLabel("Unité de finesse");
         fin.setForeground(Color.BLACK);
         finesse = new JPanel(new GridLayout(2,1));
         finesse.add(fin);
         JPanel menuFin = new JPanel(new GridLayout(1,2));
         saisieFin = new JTextField();
+        saisieFin.setForeground(Color.BLACK);
         validerFin = new JButton("Valider");
         validerFin.setForeground(Color.BLACK);
         
@@ -181,12 +190,10 @@ public class Settings extends JFrame {
             validerFin.setBackground(Color.DARK_GRAY);
             choicesAlt.setBackground(Color.DARK_GRAY);
             choicesVit.setBackground(Color.DARK_GRAY);
-
             choice1Alt.setBackground(Color.DARK_GRAY);
             choice2Alt.setBackground(Color.DARK_GRAY);
             choice1Vit.setBackground(Color.DARK_GRAY);
             choice2Vit.setBackground(Color.DARK_GRAY);
-
         }
     }
 }

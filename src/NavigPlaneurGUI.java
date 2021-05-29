@@ -42,6 +42,7 @@ public class NavigPlaneurGUI extends JFrame {
 		radius = new RadiusGlider(0,0);
 		this.initComponents();
 		this.dark = dark;
+		darkTheme();
 	}
 	
 	/**
@@ -53,7 +54,7 @@ public class NavigPlaneurGUI extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		dark = false;
+		
 		
 		// Add the map image
 		ImageIcon fond = new ImageIcon("data/fond.png");
@@ -68,7 +69,7 @@ public class NavigPlaneurGUI extends JFrame {
 		title.setHorizontalAlignment(JLabel.CENTER);
 		
 		// Add the parameters button at top left
-		settings = new JButton("Settings");
+		settings = new JButton("Paramètres");
 		settings.setSize(134, 34);
 		Font f2 = new Font("Sherif",Font.PLAIN, 15);
 		settings.setFont(f2);
@@ -88,7 +89,7 @@ public class NavigPlaneurGUI extends JFrame {
 		altitude = new JLabel("Rentrer altitude :");
 		altitudeTextField = new JTextField();
 		getAltitude = new JButton("Valider");
-		darkTheme = new JButton("ThÃ¨me sombre");
+		darkTheme = new JButton("Thème sombre");
 		navigation.setFont(f2);
 		altitude.setFont(f2);
 		getAltitude.setFont(f2);
@@ -147,7 +148,7 @@ public class NavigPlaneurGUI extends JFrame {
 		// Listener of dark theme button
 		darkTheme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent evt) {
-				darkTheme(evt);
+				darkTheme();
 			}
 		});
 		
@@ -176,9 +177,9 @@ public class NavigPlaneurGUI extends JFrame {
 
 	/**
 	 * Put the application in dark theme
-	 */
-	private void darkTheme(ActionEvent evt) {
-		if(!dark) {
+	 */	
+	private void darkTheme() {
+		if(dark) {
 			settings.setBackground(Color.DARK_GRAY);
 			menu.setBackground(Color.DARK_GRAY);
 			choice1.setBackground(Color.DARK_GRAY);
@@ -187,7 +188,7 @@ public class NavigPlaneurGUI extends JFrame {
 			getAltitude.setBackground(Color.DARK_GRAY);
 			darkTheme.setBackground(Color.DARK_GRAY);
 			getContentPane().setBackground(Color.DARK_GRAY);
-			dark = true;
+			dark = false;
 		}else {
 			settings.setBackground(Color.WHITE);
 			menu.setBackground(Color.WHITE);
@@ -197,7 +198,7 @@ public class NavigPlaneurGUI extends JFrame {
 			getAltitude.setBackground(Color.WHITE);
 			darkTheme.setBackground(Color.WHITE);
 			getContentPane().setBackground(Color.WHITE);
-			dark = false;
+			dark = true;
 		}
 	}
 	
