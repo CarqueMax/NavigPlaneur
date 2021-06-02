@@ -72,7 +72,7 @@ public class Settings extends JFrame {
 		add(welcomMenu);
 
         // altitude
-        JLabel alt = new JLabel("Unité d'altitude");
+        JLabel alt = new JLabel("Unitï¿½ d'altitude");
         alt.setForeground(Color.BLACK);
         altitude = new JPanel(new GridLayout(2,1));
         altitude.add(alt);
@@ -90,7 +90,7 @@ public class Settings extends JFrame {
         altitude.add(choicesAlt);
 
         // vitesse
-        JLabel vit = new JLabel("Unité de vitesse");
+        JLabel vit = new JLabel("Unitï¿½ de vitesse");
         vit.setForeground(Color.BLACK);
         vitesse = new JPanel(new GridLayout(2,1));
         vitesse.add(vit);
@@ -108,7 +108,7 @@ public class Settings extends JFrame {
         vitesse.add(choicesVit);
 
         // finesse
-        JLabel fin = new JLabel("Unité de finesse");
+        JLabel fin = new JLabel("Unitï¿½ de finesse");
         fin.setForeground(Color.BLACK);
         finesse = new JPanel(new GridLayout(2,1));
         finesse.add(fin);

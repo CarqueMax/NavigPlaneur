@@ -69,7 +69,7 @@ public class NavigPlaneurGUI extends JFrame {
 		title.setHorizontalAlignment(JLabel.CENTER);
 		
 		// Add the parameters button at top left
-		settings = new JButton("Paramètres");
+		settings = new JButton("Paramï¿½tres");
 		settings.setSize(134, 34);
 		Font f2 = new Font("Sherif",Font.PLAIN, 15);
 		settings.setFont(f2);
@@ -89,7 +89,7 @@ public class NavigPlaneurGUI extends JFrame {
 		altitude = new JLabel("Rentrer altitude :");
 		altitudeTextField = new JTextField();
 		getAltitude = new JButton("Valider");
-		darkTheme = new JButton("Thème sombre");
+		darkTheme = new JButton("Thï¿½me sombre");
 		navigation.setFont(f2);
 		altitude.setFont(f2);
 		getAltitude.setFont(f2);
@@ -189,7 +189,7 @@ public class NavigPlaneurGUI extends JFrame {
 			darkTheme.setBackground(Color.DARK_GRAY);
 			getContentPane().setBackground(Color.DARK_GRAY);
 			dark = false;
-		}else {
+		} else {
 			settings.setBackground(Color.WHITE);
 			menu.setBackground(Color.WHITE);
 			choice1.setBackground(Color.WHITE);
@@ -212,7 +212,7 @@ public class NavigPlaneurGUI extends JFrame {
 				System.out.println("Altitude :"+altitudeTextField.getText());
 				
 				radius.setAltitude(Integer.parseInt(altitudeTextField.getText()));
-			}else {
+			} else {
 				System.out.println("Veuillez rentrer une valeur comprise entre 0 et 10000");
 			}
 		}catch(NumberFormatException e) {
